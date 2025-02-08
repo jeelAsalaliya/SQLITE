@@ -1,0 +1,235 @@
+q.1 Write and append some data in one CSV file (f1.csv) using CSV module’s writer() function in python.
+(use writerow() and writerows() functions)
+
+import csv
+fields=['name','branch','year','cgpa']
+print("database created successfully")
+rows=[['nikhil','coe','2','9.0'],
+	['sanchit','coe','2','9.1'],
+	['aditya','it','2','9.3'],
+	['sagar','se','1','9.5'],
+	['prateek','mce','3','7.8'],
+	['sahil','ep','2','9.1']
+	]
+filename='D:\sybca08\sqlite3\student.py'
+file=open(filename,'w')
+csv_writer=csv.writer(file)
+
+csv_writer.writerow(fields)
+csv_writer.writerows(rows)
+
+file.close()
+
+o.p:::
+name,branch,year,cgpa
+
+nikhil,coe,2,9.0
+
+sanchit,coe,2,9.1
+
+aditya,it,2,9.3
+
+sagar,se,1,9.5
+
+prateek,mce,3,7.8
+
+sahil,ep,2,9.1
+
+import csv
+fields=['name','branch','year','cgpa']
+print("database append successfully")
+
+rows=[['aaa','coe','2','9.0'],
+	['bbb','coe','2','9.1'],
+	['ccc','it','2','9.3'],
+	['ddd','se','1','9.5'],
+	['eee','mce','3','7.8'],
+	['fff','ep','2','9.1']
+	]
+filename='D:\sybca08\sqlite3\student_data.py'
+file=open(filename,'a')
+csv_writer=csv.writer(file)
+
+csv_writer.writerow(fields)
+csv_writer.writerows(rows)
+
+file.close()
+
+o.p:::
+name,branch,year,cgpa
+
+aaa,coe,2,9.0
+
+bbb,coe,2,9.1
+
+ccc,it,2,9.3
+
+ddd,se,1,9.5
+
+eee,mce,3,7.8
+
+fff,ep,2,9.1
+
+Q-2 Read data of f1.csv file using CSV module’s reader() function in python.
+
+import csv
+file=open("f1.csv",'r')
+data=csv.reader(file)
+next(data)
+
+for row in data:
+	print(row)
+file.close()
+
+o.p:::
+['nikhil', 'coe', '2', '9.0']
+['sanchit', 'coe', '2', '9.1']
+['aditya', 'it', '2', '9.3']
+['sagar', 'se', '1', '9.5']
+['prateek', 'mce', '3', '7.8']
+['sahil', 'ep', '2', '9.1']
+['name', 'branch', 'year', 'cgpa']
+['aaa', 'coe', '2', '9.0']
+['bbb', 'coe', '2', '9.1']
+['ccc', 'it', '2', '9.3']
+['ddd', 'se', '1', '9.5']
+['eee', 'mce', '3', '7.8']
+['fff', 'ep', '2', '9.1']
+
+Q-3 Write and append dictionary type data in CSV file (f2.CSV) using CSV module’s DictWriter() function.
+(use writerheader() and writerows() functions)
+
+import csv
+employees=[{'first_name':'jeel','l_n':'asalaliya'},
+	{'first_name':'rahul','l_n':'pedhadiya'},
+	{'first_name':'archal','l_n':'nakarani'},
+	{'first_name':'harshil','l_n':'bhanderi'},
+	{'first_name':'meet','l_n':'akbari'}]
+file=open('f3.csv','w')
+fields=list(employees[0].keys())
+dictwriter=csv.DictWriter(file,fieldnames=fields)
+
+dictwriter.writeheader()
+dictwriter.writerows(employees)
+file.close()
+
+o.p:::
+first_name	l_n
+	
+jeel	asalaliya
+	
+rahul	pedhadiya
+	
+archal	nakarani
+	
+harshil	bhanderi
+	
+meet	akbari
+
+import csv
+employees=[{'first_name':'aaa','l_n':'asalaliya'},
+	{'first_name':'bbb','l_n':'pedhadiya'},
+	{'first_name':'ccc','l_n':'nakarani'},
+	{'first_name':'ddd','l_n':'bhanderi'},
+	{'first_name':'eee','l_n':'akbari'}]
+
+file=open('f3.csv','a')
+fields=list(employees[0].keys())
+dictwriter=csv.DictWriter(file,fieldnames=fields)
+dictwriter.writerows(employees)
+file.close()
+
+o.p:::
+aaa	asalaliya
+	
+bbb	pedhadiya
+	
+ccc	nakarani
+	
+ddd	bhanderi
+	
+eee	akbari
+
+Q-4 Display f2.CSV file data in dictionary format in python using CSV module’s DictReader() function.
+
+import csv
+file=open('f3.csv','r')
+
+data=csv.DictReader(file)
+
+for row in data:
+	print(row)
+file.close()
+
+o.p:::
+{'first_name': 'jeel', 'l_n': 'asalaliya'}
+{'first_name': 'rahul', 'l_n': 'pedhadiya'}
+{'first_name': 'archal', 'l_n': 'nakarani'}
+{'first_name': 'harshil', 'l_n': 'bhanderi'}
+{'first_name': 'meet', 'l_n': 'akbari'}
+{'first_name': 'aaa', 'l_n': 'asalaliya'}
+{'first_name': 'bbb', 'l_n': 'pedhadiya'}
+{'first_name': 'ccc', 'l_n': 'nakarani'}
+{'first_name': 'ddd', 'l_n': 'bhanderi'}
+{'first_name': 'eee', 'l_n': 'akbari'}
+
+Q-5 Write and append some data in f3.CSV file using DataFrame of pandas in python. (use to_csv()
+function) 
+
+import pandas as pd
+
+data=[
+	['aaa',20000],
+	['bbb',25000],
+	['ccc',35000]
+	]
+
+df=pd.DataFrame(data)
+df.to_csv('f3.csv','w')
+
+import pandas as pd
+data=["tisha","anandi","tanvi","khushali"]
+df=pd.DataFrame(data,index=['a','b','c','d'])
+df.to_csv('f3.csv',mode='a')
+
+q.6
+
+import pandas as pd
+df=pd.read_csv('f3.csv')
+print(df)
+print(df.values)
+
+df=pd.read_csv('f3.csv',index_col=[0])
+print(df)
+print(df.values)
+
+q.7
+
+import pandas as pd
+stud_data=[ ['isha','mca',80.7],
+	    ['karan','bcom',67.78],
+	    ['priya','bba',57],
+	    ['swati','ca',78] ]
+df=pd.DataFrame(stud_data,index=['e0','e1','e2','e3'],columns=['name','degree','per'])
+
+ew=pd.excelwriter('f4.xls')
+df.to_excel(w)
+ew.close()
+
+q.8
+
+import pandas as pd
+df=pd.read_excel(r'f4.xlsx')
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',index_col=0)
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',index_col=0,sheet_name='bca')
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',sheet_name=['svpatel','bca'])
+print("\n",df['svpatel'])
+print("\n",df['bca'].values)
+
+
+
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE student
+(
+ mo integer primary key,
+ s1 int,
+ s2 numeric,
+ s3 integer
+);

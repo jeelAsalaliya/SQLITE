@@ -1,0 +1,10 @@
+import pandas as pd
+df=pd.read_excel(r'f4.xlsx')
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',index_col=0)
+print("\n",df)
+df1=pd.read_excel(r'f4.xlsx',index_col=[0],sheet_name="mca")
+print("\n",df1)
+df2=pd.read_excel(r'f4.xlsx',sheet_name=['svpatel','bca'])
+print("\n",df2['svpatel'])
+print("\n",df2['bca'].values)

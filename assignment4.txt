@@ -1,0 +1,81 @@
+
+q.1
+Create database in sqlite named “Industry.db”. Create a table Department (d_id, d_name, 
+no_of_employee, total_payment) table and Insert minimum 10 records.
+
+Write a python program to access records from Department table and insert data into 
+“dept.CSV” file with new column ‘average_payment’ calculating from ‘total_payment’ and 
+‘no_of_employee’. (average_payment = total_payment / no_of_employee)
+
+Plot a scatter chart for department vs no_of_employee and department vs total_payment.
+
+[*note: Take following values for d_name – like Sales, Marketing, Finance, Account, IT, 
+Manufacturing, Testing, Purchase, Stock_Management, Production etc. ]
+
+ans.
+
+
+sqlite> .open dbexam.db
+sqlite> .tables
+sqlite> .databases
+main: C:\sqlite3\dbexam.db r/w
+
+sqlite> create table dept
+   ...> (
+(x1...> did int primary key,
+(x1...> dname text,
+(x1...> noofemp int,
+(x1...> totpayment int);
+sqlite> insert into dept values(10,'account',10,3000);
+sqlite> insert into dept values(20,'sales',20,70000);
+sqlite> insert into dept values(30,'purchase',25,65000);
+sqlite> insert into dept values(40,'production',50,8000);
+sqlite> insert into dept values(50,'management',5,90000);
+
+sqlite> .mode box
+sqlite> select *from dept;
+┌─────┬────────────┬─────────┬────────────┐
+│ did │   dname    │ noofemp │ totpayment │
+├─────┼────────────┼─────────┼────────────┤
+│ 10  │ account    │ 10      │ 3000       │
+│ 20  │ sales      │ 20      │ 70000      │
+│ 30  │ purchase   │ 25      │ 65000      │
+│ 40  │ production │ 50      │ 8000       │
+│ 50  │ management │ 5       │ 90000      │
+└─────┴────────────┴─────────┴────────────┘
+sqlite>
+
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+
+cn=sqlite3.connect("dbexam.db")
+print("database connected successfully")
+
+df=pd.read_sql('select * from dept',cn)
+df['avg_pay']=df['totpayment']/df['noofemp']
+df.to_csv('q1.csv',index=False)
+
+cn.close()
+
+
+
+x=df['dname']
+
+y1=df['noofemp']
+y2=df['totpayment']
+
+plt.subplot(1,2,1)
+plt.scatter(x,y1,marker='^',edgecolor="r",s=150,c='c')
+plt.title('scatter plot:departments vs no.of.employees')
+plt.xlabel('x axis:departments')
+plt.ylabel('y axis:no_of_employee')
+
+
+plt.subplot(1,2,2)
+plt.scatter(x,y2,marker='o',edgecolor='b',s=250,c='m')
+plt.ylabel('y axis:total_payments')
+plt.xlabel('x axis:departments')
+plt.title('scatter plot:department vs total_payment')
+plt.show()
+

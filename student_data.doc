@@ -1,0 +1,18 @@
+﻿1|jeel asalaliya|fy
+2|krina babariya|fy
+┌─────────┬────────────────┬──────┐
+│ roll_no │      name      │ year │
+├─────────┼────────────────┼──────┤
+│ 1       │ jeel asalaliya │ fy   │
+│ 2       │ krina babariya │ fy   │
+└─────────┴────────────────┴──────┘
+roll_no  name            year
+-------  --------------  ----
+1        jeel asalaliya  fy  
+2        krina babariya  fy  
+| roll_no |      name      | year |
+|---------|----------------|------|
+| 1       | jeel asalaliya | fy   |
+| 2       | krina babariya | fy   |
+INSERT INTO "table"(roll_no,name,year) VALUES(1,'jeel asalaliya','fy');
+INSERT INTO "table"(roll_no,name,year) VALUES(2,'krina babariya','fy');
