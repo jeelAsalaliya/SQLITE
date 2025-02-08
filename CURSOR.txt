@@ -1,0 +1,51 @@
+1.
+DECLARE
+ C_ID CUSTOMERS.ID%TYPE;
+ C_NAME CUSTOMERS.NAME%TYPE;
+ C_ADDR CUSTOMERS.ADDRESS%TYPE;
+ CURSOR T_CUSTOMERS IS SELECT ID,NAME,ADDRESS FROM CUSTOMERS;
+BEGIN
+ OPEN C_CUSTOMERS;
+ IF(C_CUSTOMER%ISPOPEN) THEN
+ LOOP
+	FETCH C_CUSTOMERS INTO C_ID,C_NAME,C_ADDR;
+	EXIT WHEN C_CUSTOMERS%NOTFOUND;
+	DBMS_OUTPUT.PUT_LINE(C_ID||' '||C_NAME||' '||C_ADDR);
+ END LOOP;
+ CLOSE C_CUSTOMERS;
+ ELSE
+	DBMS_OUTPUT.PUT_LINE('CURSOR IS NOT OPEN:');
+END IF;
+END;
+/
+CREATE TABLE CUSTOMERS
+(
+  C_ID NUMBER(10) NOT NULL PRIMARY KEY,
+  C_NAME VARCHAR(10) NULL,
+  C_ADDR VARCHAR2(10)
+);
+
+INSERT INTO CUSTOMERS VALUES(1,'JEEL','23AKROAD');
+INSERT INTO CUSTOMERS VALUES(2,'Kavya','23ROAD');
+INSERT INTO CUSTOMERS VALUES(3,'harsh','26AKROAD');
+INSERT INTO CUSTOMERS VALUES(4,'kripa','28AKROAD');
+INSERT INTO CUSTOMERS VALUES(5,'krina','28AKROAD');
+
+2.
+declare
+ cursor customer_cur is
+ select id,name from customers;
+  customer_rec customer_cur%rowtype;
+begin
+ open cursor_cur;
+ loop
+  fetch cursor_cur into cursor_rec;
+  exit when customer_cur%notfound;
+  dbms_output.put_line(customer_rec.id||' ' || customer_rec.name);
+ end loop;
+  dbms_output.put_line(customer_cur%rowcount||'customers selected');
+ close customer_cur;
+end;
+/
+
+3.

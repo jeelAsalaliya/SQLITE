@@ -1,0 +1,113 @@
+create table branch
+(
+bno number(5) primary key,
+bname varchar(10),
+city varchar(10)
+);
+
+insert into branch values(1,'kapodara','surat');
+insert into branch values(2,'vrachha','surat');
+insert into branch values(3,'diamond','vapi');
+insert into branch values(4,'m.n','valsad');
+insert into branch values(5,'udhana','surat');
+
+
+
+create table customer
+(
+cno number(12) primary key,
+cname varchar(10),
+city varchar(10)
+);
+
+
+
+insert into customer values(01,'kenil','surat');
+insert into customer values(02,'nevil','surat');
+insert into customer values(03,'hency','vapi');
+insert into customer values(04,'dehuti','valsad');
+insert into customer values(05,'heer','surat');
+
+
+create table borrow
+(
+loanno number(5) primary key,
+cno number(12) references customer(cno),
+bno number(5) references branch(bno),
+amount number(7)
+);
+
+insert into borrow values(001,01,1,'1000');
+insert into borrow values(002,02,2,'5000');
+insert into borrow values(003,03,3,'4000');
+insert into borrow values(004,04,4,'3000');
+insert into borrow values(005,05,5,'10000');
+
+create table deposit
+(
+actno number(5) primary key,
+cno number(12) references customer(cno),
+bno number(5) references branch(bno),
+amount number(7),
+adate date
+);
+
+insert into deposit values(101,01,1,'10000','22-jan-22');
+insert into deposit values(102,02,2,'7000','01-jan-23');
+insert into deposit values(103,03,3,'5000','31-dec-22');
+insert into deposit values(104,04,4,'12000','13-mar-22');
+insert into deposit values(105,05,5,'19000','26-may-22');
+insert into deposit values(106,05,5,'19000','26-may-22');
+
+select c.cno,actno from customer c,deposit d where c.cno=d.cno and cname='nevil';
+
+
+1. List all data from table deposit
+select * from deposit;
+
+2. List all data from table borrow
+select * from borrow;
+
+3. List all data from table customer
+select * from customer;
+
+
+4. Give account number and amount of depositors
+select actno,amount from deposit;
+
+5. Give cname and account number of depositors.
+select cname,actno from customer c,deposit d where c.cno=d.cno;
+
+6. Give names of borrower.
+select cname from customer c,borrow b where c.cno=b.cno;
+
+7. Give names of customers living in city Nagpur.
+select cname from customer c where c.city='surat';
+
+8. Give name of depositors having amount greater than 4000.
+select c.cname from customer c,deposit d where c.cno=d.cno and amount>4000;
+
+9. Give account date of customer anil.
+select d.adate from customer c,deposit d where c.cno=d.cno and cname='nevil';
+
+10. Give names of all branches located in city Bombay.
+select bname from branch where city='vapi'; 
+
+11. Give name of borrower having loan no 206
+
+select cname from customer c,borrow b where c.cno=b.cno and loanno=5;
+
+12. Give names of depositors having account at vapi.
+select cname from customer c,deposit d where c.cno=d.cno and city='vapi';
+
+13. Give names of all branches located in city Delhi.
+select bname from branch where city='surat';
+
+14. Give names of customers who opened account after date ‘1-12-95’.
+select cname from customer c,deposit d where c.cno=d.cno and adate>'01-dec-95';
+
+15. Give name of the city where branch kapodara branch is located.
+select city from branch where bname='m.n';
+
+
+

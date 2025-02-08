@@ -1,0 +1,364 @@
+begin;
+create table dept
+(
+deptno int primary key,
+dnname text,loc text
+);
+
+insert into dept values(1,'ansh','surat');
+insert into dept values(2,'ansh hirapara','surat');
+insert into dept values(3,'nutan','pune');
+insert into dept values(4,'riya sakariya','navsari');
+insert into dept values(5,'monika khut','ahemadabad');
+insert into dept values(6,'prachi','nadiyad');
+insert into dept values(7,'krina','surat');
+insert into dept values(8,'parag','surat');
+insert into dept values(9,'tirth','kacha');
+insert into dept values(10,'swayam','surat');
+insert into dept values(11,'sneh','surat');
+insert into dept values(12,'kenil','kheda');
+insert into dept values(13,'raj','rajkot');
+insert into dept values(14,'prem','vadodara');
+insert into dept values(15,'ravi','pune');
+
+
+create table emp
+(
+empno int primary key,
+empname text,job text,
+mgr int,hiredate text
+,sal real,comm real,deptno int
+constraint dept_fk references dept (deptno));
+
+insert into emp values(101,'ravi','manager',1015,'21-mar-2004',50000,null,1);
+insert into emp values(102,'prem','ca',1014,'10-apr-2005',90000,null,2);
+insert into emp values(103,'raj','clerk',1013,'20-may-2006',50000,null,3);
+insert into emp values(104,'kenil','clerk',1012,'30-jan-2007',60000,null,4);
+insert into emp values(105,'sneh','analysis',1011,'23-feb-2008',70000,null,5);
+insert into emp values(106,'swyam','c.s',1010,'25-mar-2009',80000,null,6);
+insert into emp values(107,'rahul','clerk',1009,'26-apr-2010',40000,null,7);
+insert into emp values(108,'raj','ca',1008,'11-jun-2011',120000,null,8);
+insert into emp values(109,'premila','sweeper',1007,'12-jul-2012',1000,null,9);
+insert into emp values(110,'kismat','salesman',1006,'`8-aug-2014',50000,10000,10);
+insert into emp values(111,'harsh','salesman',1005,'7-sep-2016',1000,9000,11);
+insert into emp values(112,'rohit','ceo',1004,'5-oct-2018',60000,null,12);
+insert into emp values(113,'kohli','ceo',1003,'9-nov-2010',800000,null,13);
+insert into emp values(114,'s k','agent',1002,'13-dec-2011',10000,null,14);
+insert into emp values(115,'p m','p.s',1001,'18-mar-2009',50000,null,15);
+commit;
+
+1)select * from dept where loc='surat' or loc ='pune';
+
+2)select * from emp where job = 'manager';
+
+3)select * from emp where job not in ('ceo');
+
+4)select * from dept where not (loc='surat or loc='pune');
+
+5)select * from emp where job='manager';
+
+6)select * from emp where job in (''manager,'clerk','analysis');
+
+7)select * from emp where empname name like '%ra%';
+
+8)select * from emp where comm is null;
+
+9)select * from emp where not(comm is null);
+
+10)select * from emp where sal<30000 and sal<60000;
+
+11)select empno,empname,job,sal+ifnull(comm,0) from emp;
+
+12)select * from emp where empname  like '% %';
+
+13)select distinct job from emp;
+
+14)select * from emp group by deptno,sal order by deptno asc,sal desc;
+
+15)select count(*) from emp where comm is null;
+
+16)select count(*) from emp where not (comm is null);
+
+select  count(*)  job from emp;
+
+select * from emp where job='analysis';
+
+select sum from emp where job='ceo';
+
+//update emp set empname ='king' where empno=101;
+
+//alter table emp add column emid;
+
+//alter table emp drop column emid;
+
+//alter table table name rename to new name;
+
+
+select sum(sal) from emp group by deptno;
+
+select count (distinct job) from emp grpup by deptno;
+
+select count (job) from emp where job="manager" group  by dept no;
+
+select count(*) deptno from emp group by deptno having count (deptno)>3;
+
+select deptno,sum(sal) from emp group by deptno order by sum(sal) desc;
+
+select count(*) from emp group by deptno having count(deptno)>0;
+
+select * from emp where sal=(select sal from emp where name="sneh");
+
+select * from emp where sal=(select job,sal from dept where emp name="p m");
+
+select * from emp where deptno=2 and sal>(select min(sal)>deptno=1;
+
+
+----------------------------------------------
+
+create table  dept1
+(deptno int primary key,
+dname text,loc text);
+
+insert into dept1 values(1,'ansh','kamrej');
+insert into dept1 values(null,'abhi','pasodara'),(3,'bhargav','navkar');
+
+create table stud
+(roll integer primary key,
+name text
+);
+
+insert into stud values(1,'ansh');
+insert into stud values(null,'abhi'),(3,'bhargav');
+
+drop table stud;
+
+create table stud
+(
+roll_no integer,
+name text,
+year text,
+primary key(roll_no,year)
+);
+
+insert into stud values(1,'ansh',2022);
+insert into stud values(2,'virat',2022);
+
+pragma table_info(stud);
+
+	*****
+
+create table student
+(
+id integer primary key,
+name text,
+email text,
+marks int
+);
+
+pragma foreign_keys=on;
+
+insert into student values (1,'ansh','ansh@gmail.com',90);
+insert into student values (2,'nutan','nutan@gmail.com',95);
+insert into student values (3,'riya','riya@gmail.com',70);
+insert into student values (4,'princy','princy12@gmail.com',60);
+insert into student values (5,'nency','nenu@gmail.com',50);
+insert into student values (6,'tulsi','tulsi@gmail.com',40);
+insert into student values (7,'bhargav','aghu@gmail.com',30);
+insert into student values (8,'aakruti','aaku@gmail.com',95);
+insert into student values (9,'dev','dev7@gmail.com',37);
+insert into student values (10,'bhavi','bhav7@gmail.com',37);
+insert into student values (11,'ravi','r123@gmail.com',55);
+
+select id,name,email,marks,
+case
+when marks>=80 then 'A+'
+when marks>=70 then 'A'
+when marks>=60 then 'B'
+when marks>=50 then 'C'
+else 'sorry! failed'
+end as "grade"
+from student;
+
+	*****update*****
+
+update student 
+set marks=
+case
+when marks>80 then 90
+else marks
+end;
+
+	*before insert*
+CREATE TRIGGER TRG_VALIDATE_EMP_BEFORE_INSERT
+BEFORE INSERT
+ON emp
+BEGIN
+	SELECT CASE
+	WHEN NEW.sal <= 0 OR NEW.comm < 0 THEN
+	RAISE(ABORT,'INVALID SALARY OR COMMISSION')
+	END;
+END;
+
+
+insert into emp values (7,'rm','p.s',1001,'18-mar-2009',-25,10,10);
+
+	*after insert
+create table emp_log
+(
+id integer primary key,
+emo no int,operation int,
+old_sal int,new_sal int,old_comm int,
+new_comm int);
+
+
+create trigger trg_emp_aft_ins
+after insert
+on emp 
+begin
+insert into emp_log(empno,operation) values(new.empno,'insert'||date("now")
+end;
+
+insert int emp_log values(1,101,125,25000,35000,5000,2000);
+
+	*after update
+create trigger trg_emp_aft_up
+after update
+on emp
+when old.sal<>new.sal or old.comm<>new.comm,
+old_comm,new_comm
+begin
+insert into emp_log(empno,operation,old_sal,new_sal,old_comm,new_comm)
+end;
+
+
+
+update 
+
+	*before update
+create trigger trg_emp_bf_up
+before update
+on emp
+begin
+select case 
+when new.sal<=0then raise (abort,'invalid salary')
+when new.comm<=0then raise (abort,'invalid comission')
+end;
+end;
+
+
+
+	*before delete
+create trigger tri_dept_bf_del
+before delete
+on dept
+begin
+select case
+when(select count(deptno) from emp where new.deptno=old.deptno)>0 then raise (abort,'child table having data')
+end;
+end;
+
+delete from emp where sal=1001 and empno=109; 
+
+	*union*
+select deptno from dept union select deptno from emp;
+
+	*union all*
+select deptno from dept union all select deptno from emp;
+
+	*interect*
+select deptno from dept union select deptno from emp;
+
+select e.*,d.dnname from emp e inner join dept d on e.deptno=d.deptno;
+	or
+select e.*,d.dnname from emp as e.dept as d on dept d on e.deptno=d.deptno;
+
+
+create table doctor
+(d_id integer primary key,
+name text,
+degree text
+);
+
+insert into doctor values(1,'anisha','mbbs');
+insert into doctor values(2,'rahul','md');
+insert into doctor values(3,'sharma','mbbs');
+insert into doctor values(4,'mitul','md');
+insert into doctor values(5,'jigar','md');
+
+create table speciality
+(
+s_id integer primary key,
+description text,
+doctor_fk references doctor(d_id)
+);
+
+insert into speciality values (101,'nuroserjan',5);
+insert into speciality values (102,'mind specilaity',4);
+insert into speciality values (103,'nuroserjan',5);
+insert into speciality values (104,'fever special',1);
+insert into speciality values (105,'nuroserjan',5);
+
+create table visitors
+(
+p_name text,
+date date,
+doctor_fk references doctor(d_id)
+);
+
+insert into visitors values('ravi','15-oct-2019',1);
+insert into visitors values('kohli','15-may-2019',1);
+insert into visitors values('yuvi','16-apr-2019',2);
+insert into visitors values('babu','18-mar-2019',3);
+insert into visitors values('dhara','15-oct-2019',5);
+
+select d.d_id,d.name,s.description,v.p_name,v.date from doctor d inner join speciality
+s on d.d_id=s.s_id where d.d_id=(select d_id from doctor where name="anisha") and (date='15-oct-2019');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

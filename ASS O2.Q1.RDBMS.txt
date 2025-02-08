@@ -1,0 +1,179 @@
+create table University-------------------------------------------------------------------------------------------------------------------------------------------
+(
+"U_id" number(2) primary key,
+"U_name" varchar(20) NOT NULL,
+"U_add" varchar(20),
+"U_city" varchar(20)
+);
+
+insert into University values(001,'VNSGU','Matawadi','Surat');
+insert into University values(002,'MAHAVEEER','Vesu','Surat');
+insert into University values(003,'SVNIT','Udhana','Surat');
+insert into University values(004,'K.S.SCL','Diamond','Ahmedabad');
+insert into University values(005,'BUSINESS','L.H.Road','Vapi');
+
+
+
+
+
+create table College-----------------------------------------------------------------------------------------------------------------------------------------------
+(-
+"C_id" number(2) primary key,
+"C_name" varchar(20) NOT NULL,
+"C_add" varchar(20),
+"C_city" varchar(20)
+);
+
+
+insert into College values(001,'VNSGU','Matawadi','Surat');
+insert into College values(002,'MAHAVEEER','Vesu','Surat');
+insert into College values(003,'SVNIT','Udhana','Surat');
+insert into College values(004,'K.S.SCL','Diamond','Ahmedabad');
+insert into College values(005,'BUSINESS','L.H.Road','Vapi');
+
+
+alter table College add("C_state" varchar(10));
+
+create table Student---------------------------------------------------------------------------------------------------------------------------------------------
+(
+"S_id" number(2) primary key,
+"S_name" varchar(20) NOT NULL,
+"S_city" varchar(20),
+"S_phone" varchar(20)
+);
+
+insert into Student values(001,'Nevil','Surat','9825768900');
+insert into Student values(002,'Kenil','Surat','9825768900');
+insert into Student values(003,'Heer','Surat','9825768900');
+insert into Student values(004,'Dehuti','Surat','9825768900');
+insert into Student values(005,'Ola','Surat','9825768900');
+
+create table Department----------------------------------------------------------------------------------------------------------------------------------------
+(
+"D_id" number(2),
+"D_name" varchar(10)
+);
+
+insert into Department values(1,'Management');
+insert into Department values(2,'Operatore');
+insert into Department values(3,'File');
+insert into Department values(4,'Record');
+insert into Department values(5,'Course');
+insert into Department values(6,'Mini');
+
+create table Course--------------------------------------------------------------------------------------------------------------------------------------------
+(
+"Course_id" number(2),
+"Course_name" varchar(10)
+);
+
+insert into Department values(1,'BBA');
+insert into Department values(2,'MBA');
+insert into Department values(3,'BCA');
+insert into Department values(4,'MCA');
+insert into Department values(5,'B.COM');
+
+
+create table Professor
+(
+"P_id" number(2) primary key,
+"P_name" varchar(20) NOT NULL,
+"P_add" varchar(20),
+"P_city" varchar(20)
+);
+
+
+insert into Professor values(01,'P.G.Badavala','Matawadi','Surat');
+insert into Professor values(02,'Birju','Vesu','Surat');
+insert into Professor values(03,'Dr.rs','Udhana','Surat');
+insert into Professor values(04,'Nevil','Diamond','Ahmedabad');
+insert into Professor values(05,'Kenil','L.H.Road','Vapi');
+
+
+
+
+
+
+
+
+
+3. View records from college table.
+
+select * from College;
+
+4. View records from course table.
+
+select * from Course;
+
+5. View records p_name, p_address, p_city from professor table.
+
+select "P_name","P_add","P_city" from Professor;
+
+
+6. Display all records from university table.
+
+select * from University;
+
+
+7. Display records s_id, s_name, s_address, s_city from
+student table whose name is rahul.
+
+select "S_id","S_name","S_city" from Student where "S_name"='Nevil';
+
+8.Change name raj instead of rajesh in student table.
+
+update Student set "S_name"='ABC' where "S_name"='Nevil';
+
+9. Change designation mca instead of bca in professor table.
+
+update Professor set "designation"='bca' where "designation"='mca';
+
+10. Add field s_email_id in student table.
+
+alter table Student add ("s_email_id" varchar2(5) );
+
+11. Add field course_description field in course table
+
+alter table Course add ("course_description" varchar2(5) ); 
+
+12. Add field desc_depart field in department table
+
+alter table Department add ("desc_depart" varchar2(5) );
+
+13. Change field name s_id to student_id in student table
+
+alter table Student rename column "S_id"  to "student_id" ;
+
+14. Remove record from university table.
+
+delete from University;
+
+15. Remove record of students whose located in vapi city
+
+delete from Student where "S_city"='Surat';
+
+
+16. Remove record of professor whose designation is bba
+
+delete from professor where "designation"='bba';
+
+17. Destroy table of university table.
+
+drop table University;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
